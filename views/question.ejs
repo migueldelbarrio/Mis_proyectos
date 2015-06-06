@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <h2> <%= subtitle %></h2>
+    <p>Responde o muere</p>
+    <form method="get" action="./answer">
+    <label>Pregunta: <%= pregunta %></label>
+    <input type="text" name="respuesta" value="responda aquí" onblur="if (this.value == '') {this.value = 'responda aquí';}"
+ onfocus="if (this.value == 'responda aquí') {this.value = '';}"/>
+    <input type="submit" name="Responder">
+    </form>
+
+  </body>
+</html>
