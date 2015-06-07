@@ -2,20 +2,20 @@
 
 exports.question= function(req,res){
 
-res.render('question',{title:'Quiz',subtitle:'El juego Online con miles de preguntas',pregunta:'¿Cuál es la capital de Italia?'});
+res.render('quizes/question',{title:'Quiz',subtitle:'El juego Online con miles de preguntas',pregunta:'¿Cuál es la capital de Italia?'});
 
 };
 
 exports.answer=function(req,res){
 
-	if(req.query.respuesta==='Roma'){
+	if(req.query.respuesta.match(/roma/i)){
 
-		res.render('answer',{title:'Quiz',subtitle:'El juego Online con miles de preguntas',respuesta:'Respuesta correcta'});
+		res.render('quizes/answer',{title:'Quiz',subtitle:'El juego Online con miles de preguntas',respuesta:'Respuesta correcta'});
 	}
 
 	else{
 
-		res.render('answer',{title:'Quiz',subtitle:'El juego Online con miles de preguntas',respuesta:'Respuesta incorrecta'});
+		res.render('quizes/answer',{title:'Quiz',subtitle:'El juego Online con miles de preguntas',respuesta:'Respuesta incorrecta'});
 
 	}
 

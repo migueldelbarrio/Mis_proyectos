@@ -12,6 +12,14 @@ router.get('/', function(req, res) {
 router.get('/quizes/question', quizController.question);
 router.get('/quizes/answer', quizController.answer);
 
+router.get('/*', function(req,res){
+
+	res.send("Página no encontrada");
+
+
+
+});
+
 /*router.get('/quiz/answer', function(req, res) {
   res.render('answer', { title: 'Quiz',subtitle:'Capital de Italia' });
 });*/
