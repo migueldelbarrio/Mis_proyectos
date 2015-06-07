@@ -5,8 +5,32 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-   <%- body %>
-    
 
+  <div id="page-wrap">
+  	<header class="main" id="h1">
+  		<img style="display:block; float:left"src="/images/skull.png" width="100px"/>
+		<div style="float:left">
+		<h1>Quiz, el juego de las preguntas.</h1>
+		<h2>¡Acierta o muere!</h2>
+		</div>
+		<div style="clear:both"></div>
+  	</header>
+
+  	<nav class="main" id="n1" role="navigation">
+		<span> <a href="/">Inicio</a></span>
+		<span><a href="/quizes/question">Preguntas</a></span>
+  	</nav>
+  	<section class="main" id="s1">
+   <%- body %>
+    </section>
+
+    <footer class="main" id="f1">
+    	<a href="http://es.wikipedia.org/wiki/Quiz" target="_blank">¿Qué es un Quiz?
+    	</a><br>
+		<a href="https://github.com/migueldelbarrio/Mis_proyectos" target="_blank">GitHub Link
+		</a>
+
+    </footer>
+	</div>
   </body>
 </html>

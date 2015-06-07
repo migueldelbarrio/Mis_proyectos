@@ -3,6 +3,8 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
-a {
-  color: #00B7FF;
-}
+
+
+header.main{ padding:15px; background: #55556E; color:white; font-family: Helvetica, Arial; font-weight: lighter;}
+nav.main{padding:7px; background: black; color:white; text-align:center;}
+footer.main{padding:7px; background:#55556E; color:white;margin-top:25px;}
