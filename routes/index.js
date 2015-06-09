@@ -12,6 +12,14 @@ router.get('/', function(req, res) {
 router.get('/quizes/question', quizController.question);
 router.get('/quizes/answer', quizController.answer);
 
+router.get('/quizes/authors', function(req,res){
+
+	res.render('authors',{nombre:'Miguel' , apellido:'del Barrio'})
+
+
+
+});
+
 router.get('/*', function(req,res){
 
 	res.send("Página no encontrada");

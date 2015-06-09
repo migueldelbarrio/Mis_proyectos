@@ -1,0 +1,5 @@
+body{background:#C2C2C2;}
+
+#page-wrap:after{content:"Wide Layout";}
+.smartphone{display:none;}
+#hgroup_main{padding-top:5%;}
