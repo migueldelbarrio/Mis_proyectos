@@ -8,13 +8,19 @@ router.get('/', function(req, res) {
   res.render('index', { title: 'Quiz',subtitle:'El portal para responder a miles de preguntas' });
 });
 
+router.get('/quizes', quizController.index);
+router.get('/quizes/:quizId(\\d+)', quizController.show);
+router.get('/quizes/:quizId(\\d+)/answer', quizController.answer);
 
-router.get('/quizes/question', quizController.question);
-router.get('/quizes/answer', quizController.answer);
+/*router.get('/quizes/question', quizController.question);
+router.get('/quizes/answer', quizController.answer);*/
+
+
 
 router.get('/quizes/authors', function(req,res){
 
-	res.render('authors',{nombre:'Miguel' , apellido:'del Barrio'})
+
+res.render('authors',{nombre:'Miguel' , apellido:'del Barrio'})
 
 
 
