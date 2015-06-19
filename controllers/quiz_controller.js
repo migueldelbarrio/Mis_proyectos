@@ -21,6 +21,86 @@ exports.answer = function(req, res) {
 
 */
 
+exports.load = function(req,res,next,quizId){
+
+  models.Quiz.find(quizId).then(
+      function(quiz){
+
+        if(quiz){
+          req.quiz = quiz;
+          next();
+        }
+
+        else{var err= new Error('No existe quizId='+ quizId);next(err);}
+
+
+      }
+    ).catch(function(err){next(err);})
+};
+
+exports.edit = function(req,res){
+
+  res.render('quizes/edit',{quiz: req.quiz});
+
+
+
+
+
+};
+
+
+
+exports.update = function(req,res){
+
+req.quiz.pregunta = req.body.quiz.pregunta;
+req.quiz.respuesta = req.body.quiz.respuesta;
+
+  req.quiz.validate().then(function(err){ 
+    if (err){ 
+      res.render('quizes/new',{quiz:req.quiz, errors:err.errors});
+    } 
+   else{  
+    req.quiz.save({fields:['pregunta','respuesta']}).then(function(){res.redirect('/quizes')});  
+
+    }    
+
+  });
+
+};
+
+
+
+
+exports.new = function(req,res){
+
+  var quiz = models.Quiz.build({pregunta:'Pregunta', respuesta:'Respuesta'});
+
+  res.render('quizes/new.ejs', {quiz:quiz});
+
+
+
+};
+
+
+exports.create = function(req,res){
+
+  var quiz = models.Quiz.build(req.body.quiz);
+
+  quiz.validate().then(function(err){ 
+    if (err){ 
+      res.render('quizes/new',{quiz:quiz, errors:err.errors});
+    } 
+   else{  
+    quiz.save({fields:['pregunta','respuesta']}).then(function(){res.redirect('/quizes')});  
+
+    }    
+
+  });
+
+};
+
+
+
 exports.index= function(req,res){
 
   if(!req.query.buscar){
@@ -35,7 +115,7 @@ exports.index= function(req,res){
 else{
 
     var search = '%'+req.query.buscar+'%';
-    search = search.replace("", "%");
+    search = search.replace(/ /g, "%");
     models.Quiz.findAll({where: ["pregunta like ?", search]}).then(function(quizes){
 
         res.render('quizes/index.ejs', {quizes:quizes});
@@ -52,11 +132,13 @@ else{
 
 exports.show=function(req,res){
 
-  models.Quiz.findById(req.params.quizId).then(function(quiz){
+  //models.Quiz.find(req.params.quizId).then(function(quiz){
 
-      res.render('quizes/show',{quiz: quiz});
+    //  res.render('quizes/show',{quiz:quiz});
 
-  })
+ res.render('quizes/show',{quiz:req.quiz});
+
+ // })
 
 
 
@@ -64,12 +146,17 @@ exports.show=function(req,res){
 
 exports.answer= function(req,res){
 
-models.Quiz.findById(req.params.quizId).then(function(quiz){
+//models.Quiz.find(req.params.quizId).then(function(quiz){
 
-      if (req.query.respuesta === quiz.respuesta){ res.render('quizes/answer',{quiz:quiz, respuesta:"Correcto"});}
-        else{res.render('quizes/answer',{quiz:quiz, respuesta:"Incorrecto"});}
+//      if (req.query.respuesta === quiz.respuesta){ res.render('quizes/answer',{quiz:quiz, respuesta:"Correcto"});}
+//        else{res.render('quizes/answer',{quiz:quiz, respuesta:"Incorrecto"});}
 
-  })
+//  })
+
+var quiz = req.quiz;
+
+ if (req.query.respuesta === quiz.respuesta){ res.render('quizes/answer',{quiz:quiz, respuesta:"Correcto"});}
+       else{res.render('quizes/answer',{quiz:quiz, respuesta:"Incorrecto"});}
 
 
 

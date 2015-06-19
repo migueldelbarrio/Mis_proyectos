@@ -1,0 +1,13 @@
+<h3>Añadir una pregunta infernal</h3>
+
+<form method="post" action="/quizes/create">
+
+	<% include form.ejs %>
+</form><br>
+
+ <% if (typeof errors !== 'undefined') { %>
+
+<% for(var i=0; i< errors.length; i++){ %>
+ <span style="color:red"> <%= errors[i].message %> </span><br>
+<% } %>
+ <% } %>
