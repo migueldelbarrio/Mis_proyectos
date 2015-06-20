@@ -91,7 +91,7 @@ exports.create = function(req,res){
       res.render('quizes/new',{quiz:quiz, errors:err.errors});
     } 
    else{  
-    quiz.save({fields:['pregunta','respuesta']}).then(function(){res.redirect('/quizes')});  
+    quiz.save({fields:['pregunta','respuesta','categoria']}).then(function(){res.redirect('/quizes')});  
 
     }    
 
@@ -99,6 +99,15 @@ exports.create = function(req,res){
 
 };
 
+exports.delete = function(req,res){
+
+
+  req.quiz.destroy().then(function(){ res.redirect('/quizes')})
+
+
+
+
+};
 
 
 exports.index= function(req,res){

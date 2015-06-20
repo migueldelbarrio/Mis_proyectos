@@ -2,4 +2,12 @@
 <input type="text" id="preg" name="quiz[pregunta]" value="<%= quiz.pregunta %>"/>
 <label> Respuesta </label>
 <input type="text" id="preg" name="quiz[respuesta]" value="<%= quiz.respuesta %>"/>
+<label> Categoria </label>
+<select name="quiz[categoria]">
+  <option value="otro" selected>Otro</option>
+  <option value="humanidades">Humanidades</option>
+  <option value="ocio">Ocio</option>
+  <option value="ciencia">Ciencia</option>
+  <option value="tecnologia">Tecnología</option>
+</select>
 <input type="submit" value="Almacenar pregunta en la base de datos"/>

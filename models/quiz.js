@@ -1,8 +1,10 @@
 // Definicion del modelo de Quiz
 
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('Quiz',
-            { pregunta:{  type: DataTypes.STRING, allowNull: false,  validate: {
+  return sequelize.define('Quiz',{ 
+
+
+  			pregunta:{  type: DataTypes.STRING, allowNull: false,  validate: {
                 len: {
                     args: [1, 50],
                     msg: "-->La pregunta debe exceder cierto número de caracteres"
@@ -21,5 +23,11 @@ module.exports = function(sequelize, DataTypes) {
 
 
         		}},
+
+       		categoria:{ type: DataTypes.STRING }
+
+
+
+
            	 });
 }
