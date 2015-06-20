@@ -60,7 +60,7 @@ req.quiz.respuesta = req.body.quiz.respuesta;
       res.render('quizes/new',{quiz:req.quiz, errors:err.errors});
     } 
    else{  
-    req.quiz.save({fields:['pregunta','respuesta']}).then(function(){res.redirect('/quizes')});  
+    req.quiz.save({fields:['pregunta','respuesta', 'categoria']}).then(function(){res.redirect('/quizes')});  
 
     }    
 
