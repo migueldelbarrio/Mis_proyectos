@@ -8,7 +8,7 @@
 <% for(i=0; i<quizes.length; i++){ %>
 <tr> 
 
-	<td>ID:<%= quizes[i].id %> </td><td><a href="/quizes/<%= quizes[i].id %>"><%= quizes[i].pregunta %></a></td><td><%= quizes[i].categoria %></td><td><a>Editar</a></td<td><form method="post" action="quizes/<%= quizes[i].id %>?_method=delete" ><button type="submit" onClick="return confirm('¿Seguro que desea borrarla?');">Borrar </button></form></td>
+	<td>ID:<%= quizes[i].id %> </td><td><a href="/quizes/<%= quizes[i].id %>"><%= quizes[i].pregunta %></a></td><td><%= quizes[i].categoria %></td><td><a href="/quizes/<%= quizes[i].id %>/edit">Editar</a></td<td><form method="post" action="quizes/<%= quizes[i].id %>?_method=delete" ><button type="submit" onClick="return confirm('¿Seguro que desea borrarla?');">Borrar </button></form></td>
 
 </tr>
 <% } %>
