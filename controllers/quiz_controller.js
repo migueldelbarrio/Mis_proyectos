@@ -23,7 +23,7 @@ exports.answer = function(req, res) {
 
 exports.load = function(req,res,next,quizId){
 
-  models.Quiz.find(quizId).then(
+  models.Quiz.find({where:{id:(quizId)}, include:[{model: models.Comment }]}).then(
       function(quiz){
 
         if(quiz){

@@ -4,3 +4,18 @@
  onfocus="if (this.value == 'responda aquí') {this.value = '';}"/>
 <input type="submit" value="Enviar"/>
 </form>
+
+
+<p><a href="/quizes/<%= quiz.id %>/comments/new"><button>Nuevo comentario</button></a></p>
+
+<p><strong>Comentarios:</strong></p>
+<ol>
+<% for(var i=0; i<quiz.Comments.length; i++) { %>
+
+<li><%= quiz.Comments[i].texto %> </li>
+
+
+
+<% } %>
+
+</ol>

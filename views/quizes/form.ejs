@@ -4,10 +4,10 @@
 <input type="text" id="preg" name="quiz[respuesta]" value="<%= quiz.respuesta %>"/>
 <label> Categoria </label>
 <select name="quiz[categoria]">
-  <option value="otro" selected>Otro</option>
-  <option value="humanidades">Humanidades</option>
-  <option value="ocio">Ocio</option>
-  <option value="ciencia">Ciencia</option>
-  <option value="tecnologia">Tecnología</option>
+  <option value="otro" <%= (quiz.categoria=='otro') ? "selected" : "" %> >Otro</option>
+  <option value="humanidades" <%= (quiz.categoria=='humanidades') ? "selected" : "" %>>Humanidades</option>
+  <option value="ocio" <%= (quiz.categoria=='ocio') ? "selected" : "" %>>Ocio</option>
+  <option value="ciencia" <%= (quiz.categoria=='ciencia') ? "selected" : "" %>>Ciencia</option>
+  <option value="tecnologia" <%= (quiz.categoria=='tecnologia') ? "selected" : "" %> >Tecnología</option>
 </select>
 <input type="submit" value="Almacenar pregunta en la base de datos"/>
