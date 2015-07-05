@@ -1,0 +1,15 @@
+<table>
+<% for(i=0; i<comments.length; i++){ %>
+
+<tr>
+<td><%= comments[i].id %></td>
+<td><%= comments[i].texto %></td>
+<td><a href="/quizes/<%= comments[i].QuizId %>/comments/<%= comments[i].id %>/publish"<button>Verificar</button></td>
+
+
+</tr>
+<% } %>
+
+</table>
+
+<a href="/comments/publishall"><button>Publicar todos</button></a>

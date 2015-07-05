@@ -6,6 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var partials = require('express-partials');
 var methodOverride = require ('method-override');
+var session = require('express-session');
 
 
 
@@ -26,29 +27,53 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
 app.use(cookieParser('Quiz 2015'));
 app.use(methodOverride('_method'));
-
+app.use(session());
 
 
 
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(function(req,res,next){
+
+   if(!req.path.match(/\/login|\/logout/)){
+
+       req.session.redir = req.path;
+    }
+    //req.session.redir = req.path;
+
+    res.locals.session = req.session;
+    next();
+
+});
+
 app.use('/', routes);
+
+// Handle 404
+  app.use(function(req, res) {
+     res.send('404: Page not Found', 404);
+  });
+  
+  // Handle 500
+  app.use(function(error, req, res, next) {
+     res.send('500: Internal Server Error', 500);
+  });
+
 //app.use('/quiz/question', routes);
 //app.use('/users', users);
 
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+/*app.use(function(req, res, next) {
     var err = new Error('Not Found');
     err.status = 404;
     next(err);
-});
+}); */
 
 // error handlers
 
 // development error handler
 // will print stacktrace
-if (app.get('env') === 'development') {
+/* if (app.get('env') === 'development') {
     app.use(function(err, req, res, next) {
         res.status(err.status || 500);
         res.render('error', {
@@ -67,6 +92,6 @@ app.use(function(err, req, res, next) {
         error: {}
     });
 });
-
+*/
 
 module.exports = app;

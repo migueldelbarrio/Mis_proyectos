@@ -21,9 +21,21 @@
 
   	<nav class="main" id="n1" role="navigation">
 		<span> <a href="/">Inicio</a></span>
-		<span><a href="/quizes">Preguntas</a></span>
-    <span><a href="/quizes/authors">Autores</a></span>
+		<span><a href="/quizes">| Preguntas</a></span>
+    <span><a href="/quizes/authors">| Autores</a></span>
+    <% if (!session.user){ %>
+    <span><a href="/login">| Login</a></span>
+    <% }else{ %>
+    <span><a href="/comments/">| Moderar comentarios</span>
+    <span><a href="/logout">| Logout</a></span>
+    <% } %>
+    
+
+
+
   	</nav>
+
+
   	<section class="main" id="s1">
    <%-body %>
     </section>

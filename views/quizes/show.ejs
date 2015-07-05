@@ -12,8 +12,9 @@
 <ol>
 <% for(var i=0; i<quiz.Comments.length; i++) { %>
 
+<% if (quiz.Comments[i].publicado) { %>
 <li><%= quiz.Comments[i].texto %> </li>
-
+<% } %>
 
 
 <% } %>
