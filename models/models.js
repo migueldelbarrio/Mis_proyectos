@@ -45,6 +45,9 @@ sequelize.sync().then(function() {
                     respuesta: 'París',
                     categoria: 'humanidades'
                  });
+      User.create({ nombre: 'Miki',
+                    pass: '1234'
+                 });
       Quiz.create({ pregunta: 'Capital de España',
                     respuesta: 'Madrid',
                     categoria: 'humanidades'
