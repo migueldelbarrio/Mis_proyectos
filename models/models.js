@@ -48,13 +48,7 @@ sequelize.sync().then(function() {
       Quiz.create({ pregunta: 'Capital de Inglaterra',
                     respuesta: 'Londres',
                     categoria: 'Humanidades'
-                 });
-      User.create({
-                    nombre:'Miguel'
-                    pass:'1234'
-
-
-                })
+                 })
       .then(function(){console.log('Base de datos inicializada')});
     };
   });
