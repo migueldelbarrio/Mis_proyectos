@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 var partials = require('express-partials');
 var methodOverride = require ('method-override');
 var session = require('express-session');
+var fs = require('fs');
 
 
 
@@ -57,6 +58,9 @@ app.use('/', routes);
   app.use(function(error, req, res, next) {
      res.send('500: Internal Server Error', 500);
   });
+
+
+
 
 //app.use('/quiz/question', routes);
 //app.use('/users', users);

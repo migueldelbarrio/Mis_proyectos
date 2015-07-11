@@ -1,3 +1,6 @@
+var time=0;
+
+
 exports.new = function(req,res){
 
 	//var errors = req.session.errors || {};
@@ -23,6 +26,8 @@ res.render('users/new');
 
 
 };*/
+
+
 
 var models = require('../models/models.js');
 
@@ -61,6 +66,11 @@ exports.create= function(req,res){
 
 	 		res.redirect(req.session.redir.toString());
 	 		//res.render('users/prueba', {pass:users.pass});
+
+	 		time = new Date();
+
+			time= time.getTime();
+
 	 	}
 
 	 	
@@ -82,6 +92,31 @@ res.redirect(req.session.redir.toString());
 
 
 };
+
+exports.timeoutlogin = function(req,res,next){
+
+var datetime = new Date();
+
+datetime= datetime.getTime();
+
+var dif=datetime-time;
+
+if(dif<120000){console.log('dentro del tiempo-->'+dif);next();time = new Date();
+				time= time.getTime();}
+	else{console.log('fuera del tiempo-->'+dif);
+			delete req.session.user;
+			res.redirect(req.session.redir.toString());
+}
+
+
+
+
+};
+
+
+
+
+
 
 exports.loginRequired = function(req,res,next){
 

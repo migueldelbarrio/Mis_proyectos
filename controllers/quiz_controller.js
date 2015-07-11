@@ -1,4 +1,6 @@
 var models = require('../models/models.js');
+var fs = require('fs');
+
 
 // GET /quizes/question
 
@@ -42,6 +44,47 @@ exports.edit = function(req,res){
 
   res.render('quizes/edit',{quiz: req.quiz});
 
+
+
+
+
+};
+
+exports.showfolders = function(req,res){
+
+
+var files=fs.readdirSync('/');
+var type=[];
+
+
+  //fs.readdir('/', function (err, files) { // '/' denotes the root folder
+  //if (err) throw err;
+
+
+ // res.render('quizes/folders', {files:files});
+
+for(var i=0; i<files.length;i++){
+
+  var file = files[i];
+
+
+    if(fs.lstatSync('/'+file).isDirectory()){type[i]='Folder-->'}
+      else{ type[i]='File-->'}
+
+    //fs.lstat('/'+file, function(err, stats) {
+
+        //console.log(stats.isDirectory());
+        //console.log(i);
+
+    //}
+
+    console.log(file);
+}
+
+
+
+
+res.render('quizes/folders', {files:files, type:type});
 
 
 
