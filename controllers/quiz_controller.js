@@ -23,6 +23,18 @@ exports.answer = function(req, res) {
 
 */
 
+var statistics = {
+      n_quizes:0,
+      n_comments:0,
+      commented: 0,
+      no_commented: 0,
+      med_comment:0
+      
+     };
+
+
+
+
 exports.load = function(req,res,next,quizId){
 
   models.Quiz.find({where:{id:(quizId)}, include:[{model: models.Comment }]}).then(
@@ -212,6 +224,46 @@ var quiz = req.quiz;
        else{res.render('quizes/answer',{quiz:quiz, respuesta:"Incorrecto"});}
 
 
+
+};
+
+
+exports.statistics = function(req,res){
+
+models.Comment.countCommentedQuizes().then(function(n_quizes){
+
+statistics.commented=n_quizes;
+
+//res.render('quizes/statistics', {n_quizes:statistics.commented});
+
+return models.Comment.countUnpublished()
+
+
+}).then( function(np_quizes){
+
+statistics.no_commented= np_quizes;
+
+return models.Quiz.findAll()
+//res.render('quizes/statistics', {nc_quizes:statistics.no_commented,c_quizes:statistics.commented})
+
+}).then(function(quizes){
+
+statistics.n_quizes= quizes.length;
+return models.Comment.findAll()
+
+//res.render('quizes/statistics', {n_quizes:statistics.n_quizes,nc_quizes:statistics.no_commented,c_quizes:statistics.commented})
+
+
+}).then(function(comments){
+
+statistics.n_comments= comments.length;
+
+statistics.med_comment = ((statistics.n_comments)/(statistics.n_quizes)).toFixed(2);
+
+res.render('quizes/statistics', {n_comments:statistics.n_comments,n_quizes:statistics.n_quizes,nc_quizes:statistics.no_commented,c_quizes:statistics.commented,med_comment:statistics.med_comment})
+
+
+})
 
 };
 

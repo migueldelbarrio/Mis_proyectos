@@ -33,6 +33,7 @@ router.delete('/quizes/:quizId', sessionController.loginRequired,sessionControll
 
 router.get('/quizes/:quizId(\\d+)/edit', sessionController.loginRequired,sessionController.timeoutlogin, quizController.edit);
 router.put('/quizes/:quizId(\\d+)', sessionController.loginRequired,sessionController.timeoutlogin, quizController.update);
+router.get('/quizes/statistics',quizController.statistics);
 /*router.get('/quizes/question', quizController.question);
 router.get('/quizes/answer', quizController.answer);*/
 
